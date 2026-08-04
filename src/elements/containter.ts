@@ -10,8 +10,8 @@ type ContainerType = {
 }
 
 export class Container extends Base {
-    constructor({parent, style, children}: Partial<BaseType & ContainerType>) {
-        super({parent, style, children, type: "div"});
+    constructor({ parent, style, children, reference }: Partial<BaseType & ContainerType>) {
+        super({ parent, style, children, type: "div", reference });
         if (style?.flex) {
             this._element.style.display = "flex";
             this._element.style.flexDirection = style.flex;

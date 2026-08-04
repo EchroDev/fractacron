@@ -5,11 +5,11 @@ export type BaseStyles = Partial<{
     backgroundColor: Color
     color: Color
     opacity: number
-    border: {
+    border: Partial<{
         radius: number
         size: DirectionsStyles | number
         color: Color
-    }
+    }>
     padding: DirectionsStyles
     margin: DirectionsStyles
 }>

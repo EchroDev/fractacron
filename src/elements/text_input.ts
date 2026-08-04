@@ -1,17 +1,19 @@
 import { Base, BaseType } from "../core/extends/base.js";
-import { Container } from "./containter.js";
 
 type TextInputType = {
     title: string
     placeholder: string
     type: "email" | "password" | "text"
+    signals: Partial<{
+        onContentChange?: () => void
+    }>
 }
 
 export class TextInput extends Base {
     declare protected _element: HTMLInputElement;
 
-    constructor({style, title, placeholder, type, parent, children}: Partial<BaseType & TextInputType>) {
-        super({style, children, type: title ? "div" : "input"});
+    constructor({ style, title, placeholder, type, parent, children, signals }: Partial<BaseType & TextInputType>) {
+        super({ style, children, type: title ? "div" : "input" });
         if (type) this._element.type = type;
         if (title && placeholder) {
             this._element.style.display = "flex";
@@ -27,5 +29,11 @@ export class TextInput extends Base {
         } else {
             if (placeholder) this._element.placeholder = placeholder;
         }
+        if (signals?.onContentChange) this.onContentChange(signals.onContentChange);
+    }
+
+    onContentChange(func: () => void) {
+        this._element.addEventListener("input", func);
+        return this;
     }
 }

@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "fractacron-cli": "./dist/index.js"
+  },
   "keywords": [
     "typescript",
     "library",

@@ -7,11 +7,12 @@ type ContainerType = {
         gap: number
         center: true
     }>
+    type: "div" | "header" | "footer" | "main" | "aside" | "section" | "nav"
 }
 
 export class Container extends Base {
-    constructor({ parent, style, children, reference }: Partial<BaseType & ContainerType>) {
-        super({ parent, style, children, type: "div", reference });
+    constructor({ parent, style, children, reference, type }: Partial<BaseType & ContainerType>) {
+        super({ parent, style, children, type: type ? type : "div", reference });
         if (style?.flex) {
             this._element.style.display = "flex";
             this._element.style.flexDirection = style.flex;

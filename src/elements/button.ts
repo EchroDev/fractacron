@@ -5,6 +5,7 @@ export class Button extends BaseContent {
     constructor({ parent, content, style, signals, children, reference }: Partial<BaseContentType & { signals: { onClick?: () => void } }>) {
         super({ parent, content, style, signals, children, type: "button", reference });
         if (signals?.onClick) this.onClick(signals?.onClick);
+        this._element.style.cursor = "pointer";
     }
 
     onClick(callback: () => void) {

@@ -1,13 +1,20 @@
 {
   "name": "fractacron",
-  "version": "0.1",
-  "description": "",
+  "version": "0.3",
+  "description": "Fractacron is a library that unifies Web Development into native TypeScript. Provides, security, functionality, simplicity and scalable proyects.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "typescript",
+    "library",
+    "web",
+    "development",
+    "frontend",
+    "components"
+  ],
+  "author": "EchroDev",
   "license": "ISC",
   "type": "module",
   "dependencies": {

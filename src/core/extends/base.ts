@@ -1,6 +1,7 @@
 import { Border } from "../../utilities/border.js"
 import { Color, colorToHex } from "../../types/color.js"
 import { BaseStyles } from "../../types/base_styles.types.js"
+import { ElementType } from "../../types/element_type.js"
 import { Reference } from "../../utilities/reference.js"
 
 export type BaseType = {
@@ -14,7 +15,7 @@ export abstract class Base {
     protected _element: HTMLElement = document.body;
     border: Border;
 
-    constructor({ style, parent, type, children, reference }: Partial<BaseType> & { type?: "div" | "button" | "p" | "input" | "img" }) {
+    constructor({ style, parent, type, children, reference }: Partial<BaseType> & { type?: ElementType }) {
         if (type) this._element = document.createElement(type);
         this.border = new Border(this._element);
         if (style) {
@@ -33,15 +34,28 @@ export abstract class Base {
             // Hacer Padding y Margin.
         }
         if (parent) this.instantiate(parent);
-        if (children) this.addChild(children);
+        if (children) this.addChild(children, type);
         if (reference) reference.element = this;
     }
 
-    addChild(element: Base | Base[]) {
-        if (element instanceof Base) this._element.appendChild(element.element);
-        else {
+    addChild(element: Base | Base[], type?: ElementType) {
+        if (element instanceof Base) {
+            if (type && type === "ul" || type === "ol") {
+                const li = document.createElement("li");
+                li.appendChild(element.element);
+                this._element.appendChild(li);
+            } else {
+                this._element.appendChild(element.element);
+            }
+        } else {
             element.forEach((base) => {
-                this._element.appendChild(base.element);
+                if (type && type === "ul" || type === "ol") {
+                    const li = document.createElement("li");
+                    li.appendChild(base.element);
+                    this._element.appendChild(li);
+                } else {
+                    this._element.appendChild(base.element);
+                }
             })
         }
     }

@@ -21,7 +21,7 @@ export class Card extends Container {
                         }
                     }
                 })
-            ]
+            ],
         })
     }
 }

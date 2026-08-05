@@ -1,4 +1,4 @@
-import { Application, Page, Container, Button, Label, TextInput, Image, Reference } from "./index.js";
+import { Application, Page, Container, Button, Label, TextInput, Image, Reference, List } from "./index.js";
 import { Card } from "./card.js";
 
 Application.settings({
@@ -35,7 +35,12 @@ const page = new Page({
                 reference: ref
             }),
             new Card("EchroDev", ref),
-            new Card("DevEchro", ref)
+            new Card("DevEchro", ref),
+            new List({
+                children: new Label({
+                    content: "XD",
+                }),
+            })
         ]
     })
 });

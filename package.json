@@ -1,6 +1,6 @@
 {
   "name": "fractacron",
-  "version": "0.3",
+  "version": "0.4.0",
   "description": "Fractacron is a library that unifies Web Development into native TypeScript. Provides, security, functionality, simplicity and scalable proyects.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

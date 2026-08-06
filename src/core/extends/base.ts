@@ -7,7 +7,6 @@ import { Reference } from "../../utilities/reference.js"
 export type BaseType = {
     parent: Base
     style: BaseStyles
-    children: Base | Base[]
     reference: Reference<Base>
 }
 
@@ -15,7 +14,7 @@ export abstract class Base {
     protected _element: HTMLElement = document.body;
     border: Border;
 
-    constructor({ style, parent, type, children, reference }: Partial<BaseType> & { type?: ElementType }) {
+    constructor(children: Base | Base[], { style, parent, type, reference }: Partial<BaseType> & { type?: ElementType }) {
         if (type) this._element = document.createElement(type);
         this.border = new Border(this._element);
         if (style) {

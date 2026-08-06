@@ -1,11 +1,21 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDirs": [
+      "./src",
+      "./sample"
+    ],
     "outDir": "./dist",
     "module": "esnext",
     "target": "es2020",
-    "lib": ["esnext", "DOM"],
-    "types": ["node"],
+    "moduleResolution": "bundler",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "types": [
+      "node",
+      "vite/client"
+    ],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
@@ -17,6 +27,11 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "skipLibCheck": true
+  },
+  "include": [
+    "./src/**/*",
+    "./sample/**/*",
+    "vite.config.ts"
+  ]
 }

@@ -13,10 +13,10 @@ export type BaseContentType = {
 } & BaseType
 
 export abstract class BaseContent extends Base {
-    protected _onContentChange: () => void = () => {};
+    protected _onContentChange: () => void = () => { };
 
-    constructor({content, signals, parent, style, children, type}: Partial<BaseContentType> & {type?: "div" | "p" | "button" | "input"}) {
-        super({parent, style, children, type})
+    constructor(children: Base | Base[], { content, signals, parent, style, type }: Partial<BaseContentType> & { type?: "div" | "p" | "button" | "input" }) {
+        super(children, { parent, style, type })
         if (content) this.content = content;
         if (signals?.onContentChange) this._onContentChange = signals.onContentChange;
         if (style?.contentColor) this.contentColor = style.contentColor;

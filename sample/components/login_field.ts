@@ -1,8 +1,8 @@
-import { TextInput } from "../../elements/text_input.js";
+import { TextInput } from "../../src/elements/text_input.js";
 
 export class LoginField extends TextInput {
     constructor(title: string, placeholder: string) {
-        super({
+        super([], {
             title,
             placeholder,
         })

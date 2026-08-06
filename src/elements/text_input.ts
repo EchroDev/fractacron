@@ -12,8 +12,8 @@ type TextInputType = {
 export class TextInput extends Base {
     declare protected _element: HTMLInputElement;
 
-    constructor({ style, title, placeholder, type, parent, children, signals }: Partial<BaseType & TextInputType>) {
-        super({ style, children, type: title ? "div" : "input" });
+    constructor(children: Base | Base[], { style, title, placeholder, type, parent, signals, reference }: Partial<BaseType & TextInputType>) {
+        super(children, { style, type: title ? "div" : "input", parent, reference });
         if (type) this._element.type = type;
         if (title && placeholder) {
             this._element.style.display = "flex";

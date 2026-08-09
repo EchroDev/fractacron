@@ -5,6 +5,4 @@ import { LoginField } from "../components/login_field.js";
 export const loginPage = new Page(new List([
     new LoginField("Username", "Example: EchroDev"),
     new LoginField("Password", "Example: 1234abcd"),
-], {}), {
-    title: "Login"
-});
+]), "Login");

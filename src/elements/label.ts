@@ -5,9 +5,13 @@ import { Color } from "../types/color.js";
 export class Label extends BaseContent {
     protected _onTextChange: () => void = () => { }
 
-    constructor(children: Base | Base[], { content, parent, style, signals, reference }: Partial<BaseContentType>) {
-        super(children, { parent, content, signals, style, type: "p", reference });
-        if (content) this.content = content;
+    constructor(children: Base | Base[])
+    constructor(children: Base | Base[], content: string)
+    constructor(children: Base | Base[], content: string, options: Partial<BaseContentType>)
+
+    constructor(children?: Base | Base[], content?: string, options?: Partial<BaseContentType>) {
+        super(children || [], { ...options, content, type: "p" });
+        this.content = content || "";
     }
 
     set color(color: Color) {

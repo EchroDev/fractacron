@@ -4,13 +4,16 @@ import { ImageType } from "../types/image.types.js";
 export class Image extends Base {
     declare protected _element: HTMLImageElement;
 
-    constructor(children: Base | Base[], options?: Partial<BaseType & ImageType>) {
-        const { parent, style, url, width, height, reference } = options || {};
-        super(children, { parent, style, type: "img", reference });
+    constructor(children: Base | Base[])
+    constructor(children: Base | Base[], url: string)
+    constructor(children: Base | Base[], url: string, options: Partial<BaseType & ImageType>)
 
-        if (url) this.url = url;
-        if (width !== undefined) this.width = width;
-        if (height !== undefined) this.height = height;
+    constructor(children?: Base | Base[], url?: string, options?: Partial<BaseType & ImageType>) {
+        super(children || [], { ...options, type: "img" });
+
+        this.url = url || "";
+        if (options?.width !== undefined) this.width = options.width;
+        if (options?.height !== undefined) this.height = options.height;
     }
 
     set url(value: string) {

@@ -2,18 +2,24 @@ import { Base, BaseType } from "../core/extends/base.js";
 import { Color, colorToHex } from "../types/color.js";
 import { ContainerStyles } from "../types/container_styles.types.js";
 
+type ContainerTagType = "div" | "header" | "footer" | "main" | "aside" | "section" | "nav";
+
 type ContainerType = {
     style: ContainerStyles
-    type: "div" | "header" | "footer" | "main" | "aside" | "section" | "nav"
+    type: ContainerTagType
 }
 
 export class Container extends Base {
-    constructor(children: Base | Base[], { parent, style, reference, type }: Partial<BaseType & ContainerType>) {
-        super(children, { parent, style, type: type ? type : "div", reference });
-        if (style?.display) this._element.style.display = style.display;
-        if (style?.flexDirection) this._element.style.flexDirection = style.flexDirection;
-        if (style?.center) this.centerElements = true;
-        if (style?.gap) this._element.style.gap = `${style.gap}px`;
+    constructor(children: Base | Base[])
+    constructor(children: Base | Base[], type: ContainerTagType)
+    constructor(children: Base | Base[], type: ContainerTagType, options: Partial<BaseType & ContainerType>)
+
+    constructor(children?: Base | Base[], type?: ContainerTagType, options?: Partial<BaseType & ContainerType>) {
+        super(children || [], { ...options, type });
+        if (options?.style?.display) this._element.style.display = options.style.display;
+        if (options?.style?.flexDirection) this._element.style.flexDirection = options.style.flexDirection;
+        if (options?.style?.center) this.centerElements = true;
+        if (options?.style?.gap) this._element.style.gap = `${options.style.gap}px`;
     }
 
     set centerElements(value: boolean) {

@@ -1,5 +1,7 @@
 export type { Color, colorToHex } from "./types/color.js";
 export type { ListType } from "./types/list.types.js";
+export type { BaseStyles } from "./types/base_styles.types.js";
+export type { ContainerStyles } from "./types/container_styles.types.js";
 export { Reference } from "./utilities/reference.js";
 export { Page } from "./core/page.js";
 export { Label } from "./elements/label.js"

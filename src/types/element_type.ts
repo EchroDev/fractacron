@@ -11,4 +11,5 @@ export type ElementType =
     "input" |
     "img" |
     "ul" |
-    "ol"
+    "ol" |
+    "page"

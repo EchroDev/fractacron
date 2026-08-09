@@ -15,7 +15,7 @@ export abstract class Base {
     border: Border;
 
     constructor(children: Base | Base[], { style, parent, type, reference }: Partial<BaseType> & { type?: ElementType }) {
-        if (type) this._element = document.createElement(type);
+        if (type && type !== "page") this._element = document.createElement(type);
         this.border = new Border(this._element);
         if (style) {
             if (style.opacity) this.opacity = style.opacity;
@@ -32,9 +32,11 @@ export abstract class Base {
             if (style.border?.color) this.border.color = style.border?.color;
             // Hacer Padding y Margin.
         }
-        if (parent) this.instantiate(parent);
-        if (children) this.addChild(children, type);
-        if (reference) reference.element = this;
+        if (type !== "page") {
+            if (parent) this.instantiate(parent);
+            if (children) this.addChild(children, type);
+            if (reference) reference.element = this;
+        }
     }
 
     addChild(element: Base | Base[], type?: ElementType) {

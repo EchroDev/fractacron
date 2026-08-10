@@ -12,4 +12,5 @@ export type ElementType =
     "img" |
     "ul" |
     "ol" |
-    "page"
+    "page" |
+    "form"

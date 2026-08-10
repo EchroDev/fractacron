@@ -6,13 +6,14 @@ export abstract class Application {
     static router: Map<string, Page>;
     static titlePrefix: string = "";
     static pageColor: Color
+    static backendUrl: string
 
-    static settings({ titlePrefix, pageColor, router }: ApplicationTypes) {
+    static settings({ titlePrefix, pageColor, router, backendUrl }: ApplicationTypes) {
         if (titlePrefix) this.titlePrefix = titlePrefix;
         if (pageColor) this.pageColor = pageColor;
         if (router) this.router = router;
+        if (backendUrl) this.backendUrl = backendUrl;
         this.navigate("/");
-        console.log(router)
     }
     static navigate(route: string) {
         const page = this.router.get(route);

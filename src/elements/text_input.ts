@@ -11,6 +11,8 @@ type TextInputType = {
 
 export class TextInput extends Base {
     declare protected _element: HTMLInputElement;
+    title: string;
+    value: string = "";
 
     constructor(children: Base | Base[])
     constructor(children: Base | Base[], title: string)
@@ -19,11 +21,13 @@ export class TextInput extends Base {
     constructor(children?: Base | Base[], title?: string, options?: Partial<BaseType & TextInputType>) {
         super(children || [], { ...options, type: title ? "div" : "input" });
         if (options?.type) this._element.type = options.type;
+        this.title = title || "";
         if (title && options?.placeholder) {
             this._element.style.display = "flex";
             this._element.style.flexDirection = "column";
             const textInput = document.createElement("input");
             textInput.placeholder = options.placeholder;
+            textInput.addEventListener("input", () => this.value = textInput.value);
             const label = document.createElement("label");
             textInput.id = title;
             label.textContent = title;
@@ -32,8 +36,10 @@ export class TextInput extends Base {
             this._element.appendChild(textInput);
         } else {
             if (options?.placeholder) this._element.placeholder = options.placeholder;
+            this._element.addEventListener("input", () => this.value = this._element.value);
         }
         if (options?.signals?.onContentChange) this.onContentChange(options.signals.onContentChange);
+
     }
 
     onContentChange(func: () => void) {

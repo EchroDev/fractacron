@@ -8,4 +8,5 @@ Application.settings({
         ["/", mainPage],
         ["/login", loginPage]
     ]),
+    backendUrl: "http://localhost:3000"
 });

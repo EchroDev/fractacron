@@ -10,6 +10,10 @@ export type BaseStyles = Partial<{
         size: DirectionsStyles | number
         color: Color
     }>
-    padding: DirectionsStyles
-    margin: DirectionsStyles
+    padding: DirectionsStyles | number
+    margin: DirectionsStyles | number
+    position: "absolute" | "relative" | "fixed"
+    directions: DirectionsStyles
+    width: number
+    height: number
 }>

@@ -6,7 +6,15 @@ export class Border {
     constructor(private _element: HTMLElement) {}
 
     set radius(value: number) { this._element.style.borderRadius = `${value}px` }
-    set size(value: number) { this._element.style.border = `${value}px solid ${colorToHex(this._borderColor)}` }
+    set size(value: number | import("../types/directions_styles.types.js").DirectionsStyles) {
+        if (typeof value === "number") this._element.style.border = `${value}px solid ${colorToHex(this._borderColor)}`
+        else {
+            if (value.left) this.sizeLeft = value.left;
+            if (value.right) this.sizeRight = value.right;
+            if (value.top) this.sizeTop = value.top;
+            if (value.bottom) this.sizeBottom = value.bottom;
+        }
+    }
     set sizeLeft(value: number) { this._element.style.borderLeft = `${value}px solid ${colorToHex(this._borderColor)}`}
     set sizeRight(value: number) { this._element.style.borderRight = `${value}px solid ${colorToHex(this._borderColor)}`}
     set sizeTop(value: number) { this._element.style.borderTop = `${value}px solid ${colorToHex(this._borderColor)}`}

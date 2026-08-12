@@ -1,13 +1,11 @@
-//export enum Color {
-//    WHITE = "#fff",
-//    BLACK = "#000",
-//    RED = "#ff0000",
-//    GREEN = "#00ff40",
-//    BLUE = "#002fff",
-//    GRAY = "#424242"
-//}
-
-export type Color = "black" | "white" | "red" | "green" | "blue" | "gray"
+export type Color =
+    | "black"
+    | "white"
+    | "red"
+    | "green"
+    | "blue"
+    | "gray"
+    | string
 
 export const colorToHex = (color: Color) => {
     switch (color) {

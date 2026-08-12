@@ -19,12 +19,4 @@ export class Image extends Base {
     set url(value: string) {
         this._element.src = value;
     }
-
-    set width(value: number | string) {
-        this._element.style.width = typeof value === "number" ? `${value}px` : value;
-    }
-
-    set height(value: number | string) {
-        this._element.style.height = typeof value === "number" ? `${value}px` : value;
-    }
 }

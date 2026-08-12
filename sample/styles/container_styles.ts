@@ -6,5 +6,6 @@ export const containerStyles: ContainerStyles = {
     },
     backgroundColor: "gray",
     gap: 10,
-    center: true
+    center: true,
+    width: 250
 }

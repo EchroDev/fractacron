@@ -5,5 +5,4 @@ export type ApplicationTypes = Partial<{
     titlePrefix: string,
     pageColor: Color,
     router: Map<string, Page>
-    backendUrl: string
 }>

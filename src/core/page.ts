@@ -9,19 +9,14 @@ export class Page extends Base {
     constructor(children: Base | Base[], title: string)
     constructor(children: Base | Base[], title: string, options: Partial<Omit<BaseType, "parent">>)
 
-
     constructor(children?: Base | Base[], title?: string, options?: Partial<Omit<BaseType, "parent">>) {
-        super(children || [], { type: "page" });
+        super(children || [], { ...options, type: "page" });
         this._children = children || [];
         this._title = title || ""
-        if (options?.style) {
-            if (options.style.opacity) this.opacity = options.style.opacity;
-            if (options.style.backgroundColor) this.backgroundColor = options.style.backgroundColor;
-            else this.backgroundColor = Application.pageColor;
-        }
     }
     render() {
         if (this._title) document.title = `${Application.titlePrefix}${this._title}`;
+        if (Application.pageColor) this.backgroundColor = Application.pageColor;
         else document.title = Application.titlePrefix;
         this.addChild(this._children);
     }

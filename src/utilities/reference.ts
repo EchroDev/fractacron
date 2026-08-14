@@ -1,7 +1,7 @@
 import { Base } from "../core/extends/base.js";
 import { Application } from "../core/application.js";
 import { Button } from "../elements/button.js";
-import { Label } from "../elements/label.js";
+import { Text } from "../elements/text.js";
 import { Container } from "../elements/containter.js";
 import { TextInput } from "../elements/text_input.js";
 import { Image } from "../elements/image.js";

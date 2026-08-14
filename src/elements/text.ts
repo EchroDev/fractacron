@@ -2,7 +2,7 @@ import { Base } from "../core/extends/base.js";
 import { BaseContent, BaseContentType } from "../core/extends/base_content.js";
 import { Color } from "../types/color.js";
 
-export class Label extends BaseContent {
+export class Text extends BaseContent {
     protected _onTextChange: () => void = () => { }
 
     constructor(children: Base | Base[])

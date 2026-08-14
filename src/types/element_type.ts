@@ -13,4 +13,4 @@ export type ElementType =
     "ul" |
     "ol" |
     "page" |
-    "form"
+    "video"

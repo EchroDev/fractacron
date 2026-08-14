@@ -5,4 +5,5 @@ export type ApplicationTypes = Partial<{
     titlePrefix: string,
     pageColor: Color,
     router: Map<string, Page>
+    page404: Page
 }>

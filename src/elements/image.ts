@@ -10,10 +10,7 @@ export class Image extends Base {
 
     constructor(children?: Base | Base[], url?: string, options?: Partial<BaseType & ImageType>) {
         super(children || [], { ...options, type: "img" });
-
         this.url = url || "";
-        if (options?.width !== undefined) this.width = options.width;
-        if (options?.height !== undefined) this.height = options.height;
     }
 
     set url(value: string) {

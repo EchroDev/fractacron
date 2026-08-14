@@ -16,4 +16,12 @@ export type BaseStyles = Partial<{
     directions: DirectionsStyles
     width: number
     height: number
+    fontSize: number
+    layout: Partial<{
+        display: "flex" | "grid" | "block"
+        flexDirection: "column" | "row"
+        gap: number
+        alignItems: "start" | "end" | "center"
+        justifyContent: "start" | "end" | "center"
+    }>
 }>

@@ -1,10 +1,10 @@
-import { Button, Container, Page, Label, Reference } from "../../src/index.js";
+import { Button, Container, Page, Text, Reference } from "../../src/index.js";
 import { loginRedirect } from "../service/login_redirect.js";
 import { containerStyles } from "../styles/container_styles.js";
 import { navButtonStyles } from "../styles/nav_button_styles.js";
 
 export const mainPage = new Page(new Container([
-    new Label([], "EchroDev", { style: { font: { color: "white" } } }),
+    new Text([], "EchroDev", { style: { color: "white " } }),
     new Container([
         new Button([], "Log in", {
             signals: {
@@ -15,9 +15,11 @@ export const mainPage = new Page(new Container([
         new Button([], "Sign up", { style: navButtonStyles })
     ], "nav", {
         style: {
-            display: "flex",
-            flexDirection: "row",
-            gap: 5
+            layout: {
+                display: "flex",
+                flexDirection: "row",
+                gap: 5
+            }
         },
     })
 ], "header", {

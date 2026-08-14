@@ -1,6 +1,5 @@
 import { Base } from "../core/extends/base.js"
 import { BaseContent } from "../core/extends/base_content.js";
-import { Label, Button } from "../index.js";
 
 export class Value<T> {
     private _content: T;

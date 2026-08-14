@@ -39,7 +39,6 @@ export class TextInput extends Base {
             this._element.addEventListener("input", () => this.value = this._element.value);
         }
         if (options?.signals?.onContentChange) this.onContentChange(options.signals.onContentChange);
-
     }
 
     onContentChange(func: () => void) {

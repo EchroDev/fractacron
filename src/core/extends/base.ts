@@ -59,32 +59,38 @@ export abstract class Base {
         return null
     }
 
-    protected set _baseStyles(style: BaseStyles) {
+    set styles(style: BaseStyles) {
         // Basic styles.
-        if (style.opacity !== undefined) this.opacity = style.opacity;
-        if (style.backgroundColor !== undefined) this.backgroundColor = style.backgroundColor;
-        if (style.color !== undefined) this.color = style.color;
-        if (style.border?.radius !== undefined) this.border.radius = style.border.radius;
-        if (style.width !== undefined) this.width = style.width;
-        if (style.height !== undefined) this.height = style.height;
+        if (style.opacity) this.opacity = style.opacity;
+        if (style.backgroundColor) this.backgroundColor = style.backgroundColor;
+        if (style.color) this.color = style.color;
+        if (style.border?.radius) this.border.radius = style.border.radius;
+        if (style.width) this.width = style.width;
+        if (style.height) this.height = style.height;
 
         // Border styles.
-        if (style.border?.size !== undefined) this.border.size = style.border.size;
-        if (style.border?.color !== undefined) this.border.color = style.border.color;
+        if (style.border?.size) this.border.size = style.border.size;
+        if (style.border?.color) this.border.color = style.border.color;
 
         // Position styles.
-        if (style.position !== undefined) this.position = style.position;
-        if (style.directions !== undefined) this.directions = style.directions;
+        if (style.position) this.position = style.position;
+        if (style.directions) this.directions = style.directions;
 
         // Padding styles.
-        if (style.padding !== undefined) this.padding = style.padding;
+        if (style.padding) this.padding = style.padding;
 
         // Margin Styles.
-        if (style.margin !== undefined) this.margin = style.margin;
-    }
+        if (style.margin) this.margin = style.margin;
 
-    set styles(style: BaseStyles) {
-        this._baseStyles = style;
+        // Font Styles.
+        if (style.fontSize) this.fontSize = style.fontSize;
+
+        // Flexbox Styles.
+        if (style.layout?.display) this.display = style.layout.display;
+        if (style.layout?.flexDirection) this.flexDirection = style.layout.flexDirection;
+        if (style.layout?.gap) this.gap = style.layout.gap;
+        if (style.layout?.alignItems) this.alignItems = style.layout.alignItems;
+        if (style.layout?.justifyContent) this.justifyContent = style.layout.justifyContent;
     }
 
     set options(options: Partial<Omit<BaseType, "parent" | "type">>) {
@@ -103,12 +109,14 @@ export abstract class Base {
     set width(value: number) { this._element.style.width = `${value}px`; }
     set height(value: number) { this._element.style.height = `${value}px`; }
     set position(value: "absolute" | "relative" | "fixed") { this._element.style.position = value; }
+
     set directions(value: DirectionsStyles) {
         if (value.top !== undefined) this._element.style.top = `${value.top}px`;
         if (value.bottom !== undefined) this._element.style.bottom = `${value.bottom}px`;
         if (value.left !== undefined) this._element.style.left = `${value.left}px`;
         if (value.right !== undefined) this._element.style.right = `${value.right}px`;
     }
+
     set padding(value: number | DirectionsStyles) {
         if (typeof value === "number") this._element.style.padding = `${value}px`;
         else {
@@ -126,5 +134,25 @@ export abstract class Base {
             if (value.top !== undefined) this._element.style.marginTop = `${value.top}px`;
             if (value.bottom !== undefined) this._element.style.marginBottom = `${value.bottom}px`;
         }
+    }
+
+    set fontSize(value: number) {
+        this._element.style.fontSize = `${value}px`;
+    }
+
+    set display(value: "flex" | "grid" | "block") {
+        this._element.style.display = value;
+    }
+    set flexDirection(value: "row" | "column") {
+        this._element.style.flexDirection = value;
+    }
+    set gap(value: number) {
+        this._element.style.gap = `${value}px`;
+    }
+    set alignItems(value: "start" | "end" | "center") {
+        this._element.style.alignItems = value;
+    }
+    set justifyContent(value: "start" | "end" | "center") {
+        this._element.style.justifyContent = value;
     }
 }

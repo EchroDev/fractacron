@@ -1,11 +1,15 @@
-import type { ContainerStyles } from "../../src";
+import type { BaseStyles } from "../../src";
 
-export const containerStyles: ContainerStyles = {
+export const containerStyles: BaseStyles = {
     border: {
         radius: 80
     },
     backgroundColor: "gray",
-    gap: 10,
-    center: true,
+    layout: {
+        gap: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+    },
     width: 250
 }

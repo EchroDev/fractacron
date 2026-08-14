@@ -5,7 +5,7 @@ import { mainPage } from "./pages/main.js";
 
 Application.settings({
     titlePrefix: "EchroDev | ",
-    pageColor: "black",
+    pageColor: "white",
     router: new Map([
         ["/", mainPage],
         ["/login", loginPage]

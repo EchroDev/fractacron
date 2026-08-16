@@ -16,7 +16,7 @@ export class Page extends Base {
     }
     render() {
         if (this._title) document.title = `${Application.titlePrefix}${this._title}`;
-        if (Application.pageColor) this.backgroundColor = Application.pageColor;
+        if (Application.pageColor) this.bgColor = Application.pageColor;
         else document.title = Application.titlePrefix;
         this.addChild(this._children);
     }

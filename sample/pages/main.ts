@@ -4,7 +4,7 @@ import { containerStyles } from "../styles/container_styles.js";
 import { navButtonStyles } from "../styles/nav_button_styles.js";
 
 export const mainPage = new Page(new Container([
-    new Text([], "EchroDev", { style: { color: "white " } }),
+    new Text([], "EchroDev", { style: { color: "white" } }),
     new Container([
         new Button([], "Log in", {
             signals: {
@@ -15,11 +15,9 @@ export const mainPage = new Page(new Container([
         new Button([], "Sign up", { style: navButtonStyles })
     ], "nav", {
         style: {
-            layout: {
-                display: "flex",
-                flexDirection: "row",
-                gap: 5
-            }
+            display: "flex",
+            flexDirection: "row",
+            gap: 5
         },
     })
 ], "header", {

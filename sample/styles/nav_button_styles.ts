@@ -7,8 +7,7 @@ export const navButtonStyles: BaseStyles = {
         left: 10,
         right: 10
     },
-    border: {
-        radius: 80,
-        size: 0
-    }
+    borderRadius: 80,
+    borderSize: 0,
+    borderColor: "black"
 }

@@ -1,4 +1,3 @@
-import { Border } from "../../utilities/border.js"
 import { Color, colorToHex } from "../../types/color.js"
 import { BaseStyles } from "../../types/base_styles.types.js"
 import { DirectionsStyles } from "../../types/directions_styles.types.js"
@@ -15,11 +14,9 @@ export type BaseType = {
 export abstract class Base {
     protected _element: HTMLElement = document.body;
     protected _reference?: Reference<Base>
-    border: Border;
 
     constructor(children: Base | Base[], { style, parent, type, reference }: Partial<BaseType> & { type?: ElementType }) {
         if (type && type !== "page") this._element = document.createElement(type);
-        this.border = new Border(this._element);
         if (style) this.styles = style;
         if (type !== "page") {
             if (parent) this.instantiate(parent);
@@ -62,15 +59,15 @@ export abstract class Base {
     set styles(style: BaseStyles) {
         // Basic styles.
         if (style.opacity) this.opacity = style.opacity;
-        if (style.backgroundColor) this.backgroundColor = style.backgroundColor;
+        if (style.bgColor) this.bgColor = style.bgColor;
         if (style.color) this.color = style.color;
-        if (style.border?.radius) this.border.radius = style.border.radius;
         if (style.width) this.width = style.width;
         if (style.height) this.height = style.height;
 
         // Border styles.
-        if (style.border?.size) this.border.size = style.border.size;
-        if (style.border?.color) this.border.color = style.border.color;
+        if (style.borderRadius) this.borderRadius = style.borderRadius;
+        if (typeof style.borderSize === "number") this.borderSize = style.borderSize;
+        if (style.borderColor) this.borderColor = style.borderColor;
 
         // Position styles.
         if (style.position) this.position = style.position;
@@ -86,11 +83,11 @@ export abstract class Base {
         if (style.fontSize) this.fontSize = style.fontSize;
 
         // Flexbox Styles.
-        if (style.layout?.display) this.display = style.layout.display;
-        if (style.layout?.flexDirection) this.flexDirection = style.layout.flexDirection;
-        if (style.layout?.gap) this.gap = style.layout.gap;
-        if (style.layout?.alignItems) this.alignItems = style.layout.alignItems;
-        if (style.layout?.justifyContent) this.justifyContent = style.layout.justifyContent;
+        if (style.display) this.display = style.display;
+        if (style.flexDirection) this.flexDirection = style.flexDirection;
+        if (style.gap) this.gap = style.gap;
+        if (style.alignItems) this.alignItems = style.alignItems;
+        if (style.justifyContent) this.justifyContent = style.justifyContent;
     }
 
     set options(options: Partial<Omit<BaseType, "parent" | "type">>) {
@@ -104,7 +101,7 @@ export abstract class Base {
 
     get element(): HTMLElement { return this._element }
     set opacity(value: number) { this._element.style.opacity = `${value / 100}` }
-    set backgroundColor(value: Color) { this._element.style.backgroundColor = colorToHex(value); }
+    set bgColor(value: Color) { this._element.style.backgroundColor = colorToHex(value); }
     set color(value: Color) { this._element.style.color = colorToHex(value); }
     set width(value: number) { this._element.style.width = `${value}px`; }
     set height(value: number) { this._element.style.height = `${value}px`; }
@@ -154,5 +151,24 @@ export abstract class Base {
     }
     set justifyContent(value: "start" | "end" | "center") {
         this._element.style.justifyContent = value;
+    }
+
+    set borderRadius(value: number) { this._element.style.borderRadius = `${value}px` }
+    set borderSize(value: number | DirectionsStyles) {
+        if (typeof value === "number") this._element.style.border = `${value}px solid`
+        else {
+            if (value.left) this.borderLeft = value.left;
+            if (value.right) this.borderRight = value.right;
+            if (value.top) this.borderTop = value.top;
+            if (value.bottom) this.borderBottom = value.bottom;
+        }
+    }
+    set borderLeft(value: number) { this._element.style.borderLeft = `${value}px solid` }
+    set borderRight(value: number) { this._element.style.borderRight = `${value}px solid` }
+    set borderTop(value: number) { this._element.style.borderTop = `${value}px solid` }
+    set borderBottom(value: number) { this._element.style.borderBottom = `${value}px solid` }
+
+    set borderColor(value: Color) {
+        this._element.style.borderColor = colorToHex(value);
     }
 }

@@ -12,6 +12,7 @@ export class Text extends BaseContent {
     constructor(children?: Base | Base[], content?: string, options?: Partial<BaseContentType>) {
         super(children || [], { ...options, content, type: "p" });
         this.content = content || "";
+        this.margin = 0
     }
 
     set color(color: Color) {

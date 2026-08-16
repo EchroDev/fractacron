@@ -8,7 +8,7 @@ export const loginPage = new Page(
     new Container([
         new LoginField("Username", "Example: EchroDev"),
         new LoginField("Password", "Example: 1234abcd"),
-        new Button([], "Login", {
+        new Button([], "Login", {}, {
             submit: true
         }),
         new Slider([], "Random slider", {

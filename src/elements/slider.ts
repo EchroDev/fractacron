@@ -12,5 +12,6 @@ export class Slider extends Input {
         if (options?.min) this._inputElement.min = options.min.toString();
         if (options?.max) this._inputElement.max = options.max.toString();
         if (options?.step) this._inputElement.step = options.step.toString();
+        if (options?.style) this.style = options.style;
     }
 }

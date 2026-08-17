@@ -4,22 +4,16 @@ import { containerStyles } from "../styles/container_styles.js";
 import { navButtonStyles } from "../styles/nav_button_styles.js";
 
 export const mainPage = new Page(new Container([
-    new Text([], "EchroDev", { style: { color: "white" } }),
+    new Text([], "EchroDev", { style: "text-white" }),
     new Container([
         new Button([], "Log in", {}, {
             signals: {
                 onClick: loginRedirect
             },
-            style: navButtonStyles
         }),
-        new Button([], "Sign up", {}, { style: navButtonStyles })
+        new Button([], "Sign up", {}, {})
     ], "nav", "default", {
-        style: {
-            display: "flex",
-            flexDirection: "row",
-            gap: 5
-        },
+        style: "flex flex-row gap-2"
     })
 ], "header", "default", {
-    style: containerStyles
 }), "Main")

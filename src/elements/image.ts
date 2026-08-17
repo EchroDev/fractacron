@@ -13,21 +13,7 @@ export class Image extends Base {
         super(children || [], { ...options, type: "img" });
         this.url = url || "";
 
-        switch (preset) {
-            case "default":
-                this.borderRadius = 40;
-                break;
-            case "rounded":
-                this.borderRadius = 999;
-                break;
-            case "bordered":
-                this.borderRadius = 40;
-                this.borderSize = 4;
-                break;
-            case "rounded-bordered":
-                this.borderRadius = 999;
-                this.borderSize = 4;
-        }
+        if (options?.style) this.style = options.style;
     }
 
     set url(value: string) {

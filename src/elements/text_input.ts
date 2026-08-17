@@ -5,6 +5,7 @@ import { Input } from "./input.js";
 type TextInputType = {
     type: "text" | "email" | "password"
     placeholder: string
+    fieldStyle: string
     signals: Partial<{
         onContentChange?: () => void
     }>
@@ -26,63 +27,28 @@ export class TextInput extends Input {
         if (options?.placeholder && !title) this._element.placeholder = options.placeholder;
         if (options?.signals?.onContentChange) this.onContentChange(options.signals.onContentChange);
 
-        switch (preset?.type) {
-            case "default":
-                this._defaultPreset();
-                break;
-            case "rounded":
-                this._roundedPreset();
-                break;
-            case "contrast":
-                this._contrastPreset();
-                break;
-            case "rounded-contrast":
-                this._contrastPreset();
-                this._roundedPreset();
-                break;
-            case "bordered":
-                this._defaultPreset();
-                this._inputElement.style.border = "2px solid";
-                break;
-            case "rounded-bordered":
-                this._roundedPreset();
-                this._inputElement.style.border = "2px solid";
-                break;
-        }
+        // Default Field Style
+        this._inputElement.style.border = "4px solid";
+        this._inputElement.style.borderRadius = "1.5rem";
+        this._inputElement.style.padding = "0.25rem 0.75rem";
+        this._inputElement.style.backgroundColor = "#ffffff";
+        this._inputElement.style.fontSize = "1.25rem";
 
-        switch (preset?.size) {
-            case "small":
-                this._inputElement.style.padding = "6px 8px 6px 8px"
-                this._inputElement.style.fontSize = "12px"
-                break;
-            case "large":
-                this._inputElement.style.padding = "10px 12px 10px 12px"
-                this._inputElement.style.fontSize = "24px"
+        // Default container style
+        this._element.style.borderRadius = "1.5rem";
+        this._element.style.padding = "0.5rem";
+        this._element.style.backgroundColor = "#e5e7eb";
 
-        }
-    }
-
-    private _defaultPreset() {
-        this._inputElement.style.padding = "8px 10px 8px 10px"
-        this._inputElement.style.borderRadius = "8px"
-        this._inputElement.style.border = "0"
-        this._inputElement.style.fontSize = "16px"
-    }
-
-    private _roundedPreset() {
-        this._defaultPreset();
-        this._inputElement.style.borderRadius = "360px";
-    }
-
-    private _contrastPreset() {
-        this._defaultPreset();
-        this.bgColor = "#9c9c9cff"
-        this.padding = 8;
-        this.borderRadius = 8;
+        if (options?.style) this.style = options.style;
+        if (options?.fieldStyle) this.fieldStyle = options.fieldStyle;
     }
 
     onContentChange(func: () => void) {
         this._element.addEventListener("input", func);
         return this;
+    }
+
+    set fieldStyle(value: string) {
+        this._inputElement.className = this._inputElement.className + " " + value;
     }
 }

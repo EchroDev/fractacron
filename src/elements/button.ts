@@ -2,6 +2,7 @@ import { Base, BaseType } from "../core/extends/base.js";
 import { BaseContent, BaseContentType } from "../core/extends/base_content.js";
 import { Value } from "../utilities/value.js";
 
+
 type ButtonOptions = Partial<BaseContentType & { submit?: boolean; signals?: { onClick?: () => void } }>;
 type ButtonPresetType = Partial<{
     rounded: boolean
@@ -24,51 +25,18 @@ export class Button extends BaseContent {
         this._element.style.cursor = "pointer";
         (this._element as HTMLButtonElement).type = options?.submit ? "submit" : "button";
 
-        this._defaultPreset();
-        if (preset?.rounded) this._roundedPreset();
-        if (preset?.bordered) this.borderSize = 2;
+        // Default Style
+        this._element.style.borderRadius = "999px";
+        this._element.style.border = "0";
+        this._element.style.padding = "0.25rem 0.75rem";
+        this._element.style.backgroundColor = "#e5e7eb";
+        this._element.style.fontSize = "1.25rem";
 
-        switch (preset?.size) {
-            case "small":
-                this.fontSize = 18;
-                this.padding = {
-                    top: 5,
-                    bottom: 5,
-                    left: 10,
-                    right: 10
-                }
-                break;
-            case "large":
-                this.fontSize = 32;
-                this.padding = {
-                    top: 12,
-                    bottom: 12,
-                    left: 24,
-                    right: 24
-                }
-                break;
-        }
+        if (options?.style) this.style = options.style;
     }
 
     onClick(callback: () => void) {
         this._element.addEventListener("click", callback);
         return this;
-    }
-
-    private _defaultPreset() {
-        this.borderRadius = 10;
-        this.fontSize = 24;
-        this.borderSize = 0;
-        this.padding = {
-            top: 8,
-            bottom: 8,
-            left: 16,
-            right: 16
-        }
-    }
-
-    private _roundedPreset() {
-        this._defaultPreset();
-        this.borderRadius = 360;
     }
 }

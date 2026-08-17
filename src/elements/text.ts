@@ -12,7 +12,8 @@ export class Text extends BaseContent {
     constructor(children?: Base | Base[], content?: string, options?: Partial<BaseContentType>) {
         super(children || [], { ...options, content, type: "p" });
         this.content = content || "";
-        this.margin = 0
+        this._element.style.fontSize = "1.25rem"
+        if (options?.style) this.style = options.style;
     }
 
     set color(color: Color) {

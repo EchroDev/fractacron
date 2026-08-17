@@ -8,5 +8,6 @@ export class List extends Base {
 
     constructor(children?: Base | Base[], type?: "ordered" | "unordered", options?: Partial<BaseType & ListType>) {
         super(children || [], { ...options, type: type === "ordered" ? "ol" : "ul" });
+        if (options?.style) this.style = options.style;
     }
 }

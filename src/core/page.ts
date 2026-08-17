@@ -13,10 +13,11 @@ export class Page extends Base {
         super(children || [], { ...options, type: "page" });
         this._children = children || [];
         this._title = title || ""
+        if (options?.style) this.style = options.style;
     }
     render() {
         if (this._title) document.title = `${Application.titlePrefix}${this._title}`;
-        if (Application.pageColor) this.bgColor = Application.pageColor;
+        if (Application.pageColor) this._element.style.backgroundColor = Application.pageColor;
         else document.title = Application.titlePrefix;
         this.addChild(this._children);
     }

@@ -4,12 +4,14 @@ import { everyElementPage } from "./pages/every_element.js";
 import { loginPage } from "./pages/login.js";
 import { mainPage } from "./pages/main.js";
 import { samplePage } from "./pages/sample_page.js";
+import "./globals.css";
+import { smoothNavbar } from "./pages/smooth_navbar.js";
 
 Application.settings({
     titlePrefix: "EchroDev | ",
     pageColor: "white",
     router: new Map([
-        ["/", everyElementPage],
+        ["/", smoothNavbar],
         ["/login", loginPage]
     ]),
     page404

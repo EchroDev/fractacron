@@ -1,14 +1,15 @@
 import { Base, BaseType } from "../core/extends/base.js";
+import { element, Element } from "../core/extends/element.js";
 import { BaseStyles } from "../types/base_styles.types.js";
 
-type ContainerTagType = "div" | "header" | "footer" | "main" | "aside" | "section" | "nav";
+export type ContainerTagType = "div" | "header" | "footer" | "main" | "aside" | "section" | "nav";
 
-type ContainerType = {
+export type ContainerType = {
     style: BaseStyles
     type: ContainerTagType
 }
 
-type ContainerPresetType = "default" | "center" | "center-column";
+export type ContainerPresetType = "default" | "center" | "center-column";
 
 export class Container extends Base {
     constructor(children: Base | Base[])
@@ -20,4 +21,8 @@ export class Container extends Base {
         super(children || [], { ...options, type });
         if (options?.style) this.style = options.style;
     }
+}
+
+export const div = (children: HTMLElement | HTMLElement[], styles?: string, config?: (el: HTMLDivElement) => void) => {
+    return element("div", styles || "", config || ((el: HTMLDivElement) => { }), children);
 }

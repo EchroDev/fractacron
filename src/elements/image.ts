@@ -1,4 +1,5 @@
 import { Base, BaseType } from "../core/extends/base.js";
+import { element } from "../core/extends/element.js";
 import { ImageType } from "../types/image.types.js";
 
 export class Image extends Base {
@@ -19,4 +20,12 @@ export class Image extends Base {
     set url(value: string) {
         this._element.src = value;
     }
+}
+
+export const img = (children: HTMLElement | HTMLElement[], { src, width, height }: { src: string, width: number, height: number }, styles?: string, config?: (el: HTMLImageElement) => void) => {
+    const img = element("img", styles || "", config || ((el: HTMLImageElement) => { }), children);
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    return img;
 }

@@ -11,3 +11,4 @@ export { Application } from "./core/application.js";
 export { TextInput } from "./elements/text_input.js";
 export { Image } from "./elements/image.js";
 export { List } from "./elements/list.js";
+export { div } from "./core/element_functions.js";

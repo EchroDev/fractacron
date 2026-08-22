@@ -6,13 +6,13 @@ import { mainPage } from "./pages/main.js";
 import { samplePage } from "./pages/sample_page.js";
 import "./globals.css";
 import { smoothNavbar } from "./pages/smooth_navbar.js";
+import { elementFunction } from "./pages/element_function.js";
 
 Application.settings({
     titlePrefix: "EchroDev | ",
     pageColor: "white",
     router: new Map([
-        ["/", smoothNavbar],
-        ["/login", loginPage]
+        ["/", elementFunction]
     ]),
     page404
 });

@@ -1,5 +1,6 @@
 import { BaseType } from "../core/extends/base.js";
 import { Base } from "../core/extends/base.js";
+import { element } from "../core/extends/element.js";
 import { InputType } from "../types/input.type.js";
 
 export abstract class Input extends Base {
@@ -30,4 +31,12 @@ export abstract class Input extends Base {
             this._element.addEventListener("input", () => this.value = this._element.value);
         }
     }
+}
+
+export const input = (children: HTMLElement | HTMLElement[], { placeholder, inputType, value }: { placeholder?: string, inputType?: "text" | "email" | "password" | "range", value?: string }, styles?: string, config?: (el: HTMLInputElement) => void) => {
+    const input = element("input", styles || "", config || ((el: HTMLInputElement) => { }), children);
+    input.type = inputType || "text";
+    input.placeholder = placeholder || "";
+    input.value = value || "";
+    return input;
 }

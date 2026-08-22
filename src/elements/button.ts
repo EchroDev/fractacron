@@ -1,5 +1,6 @@
 import { Base, BaseType } from "../core/extends/base.js";
 import { BaseContent, BaseContentType } from "../core/extends/base_content.js";
+import { element } from "../core/extends/element.js";
 import { Value } from "../utilities/value.js";
 
 
@@ -39,4 +40,8 @@ export class Button extends BaseContent {
         this._element.addEventListener("click", callback);
         return this;
     }
+}
+
+export const button = (children: HTMLElement | HTMLElement[], text: string, styles?: string, config?: (el: HTMLButtonElement) => void) => {
+    return element("button", styles || "", config || ((el: HTMLButtonElement) => { }), children);
 }

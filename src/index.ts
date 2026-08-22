@@ -1,14 +1,19 @@
-export type { Color, colorToHex } from "./types/color.js";
-export type { ListType } from "./types/list.types.js";
-export type { BaseStyles } from "./types/base_styles.types.js";
-export { Reference } from "./utilities/reference.js";
-export { Page } from "./core/page.js";
-export { Text } from "./elements/text.js"
-export { Button } from "./elements/button.js";
-export { Container } from "./elements/containter.js";
-export { Value } from "./utilities/value.js";
-export { Application } from "./core/application.js";
-export { TextInput } from "./elements/text_input.js";
-export { Image } from "./elements/image.js";
-export { List } from "./elements/list.js";
-export { div } from "./core/element_functions.js";
+import Lexer from "./lexer";
+import Parser from "./parser";
+import Transpiler from "./transpiler";
+
+async function main() {
+    const start = performance.now();
+    const lexer = new Lexer();
+    if (process.argv[2] && process.argv[3]) {
+        await lexer.init(process.argv[2], process.argv[3]);
+    } else {
+        console.log("No file route provided");
+        throw new Error("No file provided");
+    }
+    const parser = new Parser(lexer.tokens);
+    await new Transpiler(parser.program).init(process.argv[2]);
+    const end = performance.now();
+    console.log(`Time: ${(end - start).toFixed(2)}ms`);
+}
+main();
